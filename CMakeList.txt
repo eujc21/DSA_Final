@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.15)
+project(ParseCSV)
+
+find_package(RapidCSV REQUIRED)
+find_package(nlohmann_json REQUIRED)
+find_package(fmt REQUIRED)
+
+# Include Conan setup
+#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+#conan_basic_setup()
+
+# Add executable
+add_executable(ParseCSV src/main.cpp)
+
+# Link libraries
+target_link_libraries(ParseCSV PRIVATE
+  NLOHMANN_JSON::nlohmann_json
+  FMT::fmt
+  RAPIDCSV::RAPIDCSV
+)

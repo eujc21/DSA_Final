@@ -1,0 +1,3 @@
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/rebuild_cache.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/edit_cache.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir
