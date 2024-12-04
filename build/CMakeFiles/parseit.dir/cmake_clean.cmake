@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/parseit.dir/include/Graph.cpp.o"
   "CMakeFiles/parseit.dir/src/main.cpp.o"
   "parseit"
   "parseit.pdb"

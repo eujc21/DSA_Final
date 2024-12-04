@@ -1,20 +1,16 @@
 #include <fstream>
 #include <iostream>
-#include <map>
-#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
-using namespace std;
+#include <unordered_map>
+
+#include "Graph.h"
 
 #include <nlohmann/json.hpp>
 #include <rapidcsv.h>
-// import a csv file to create a struct
-// The header is movie_id, title, cast, crew
-// the move_id is an integer
-// the title is a string
-// the cast is an array of objects
-// the crew is an array of objects
+
+using namespace std;
 using json = nlohmann::json;
 
 struct Actor {
@@ -40,78 +36,137 @@ struct Movie {
   int movie_id;
   string title;
   vector<Actor> cast;
-  // vector<Crew> crew;
+  vector<Crew> crew;
 };
 
-// Create a helper function which will help me create a vector of movies.
-// The function will take in a string which is the path to the csv file
-// The function will return a vector of movies
-// The function will read the csv file and create a vector of movies
-// The function will help parse each line to obtaine the Movie, Actor and Crew data
-void parseCSV(const string& filename, std::vector<Movie>& movies) {
-  // Load the CSV File
-  rapidcsv::Document doc(filename, rapidcsv::LabelParams(-1, -1));
-  // Loop through each row and prin
-  for(size_t i = 0; i < doc.GetRowCount(); ++i){
-    // Parse the movie
-    Movie movie;
-    // Safely parse movie_id
-    string:: movieIDStr = doc.GetCell<std::string>(0,i);
-    try{
-      movie.movie_id = std::stoi(movieIDStr);
-    } catch(const std::invalid_argument& ia){
-      std::err << "Error: Invalid movie_id at row: " << i << movieIDStr << "\n";
-      continue;
-    } catch(const std::out_of_rang& ia){
-      std::err << "Error: Out of range movie_id at row: " << i << movieIDStr << "\n";
-      continue;
-    }
-    movie.title = doc.GetCell<string>(1, i);
-    // Parse the cast 
-    string castJSON = json::parse(doc.GetCell<string>(2, i));
-    for (auto& cast : castJSON) {
-      Actor actor;
-      actor.cast_id = cast["cast_id"];
-      actor.character = cast["character"];
-      actor.credit_id = cast["credit_id"];
-      movie.cast.push_back(actor);
-    }
-    movies.push_back(movie);
-    // Display parsed data
-  }
-    for (const auto& movie : movies) {
-        std::cout << "Movie ID: " << movie.movie_id << "\n";
-        std::cout << "Title: " << movie.title << "\n";
-        std::cout << "Cast:\n";
-        for (const auto& actor : movie.cast) {
-            std::cout << "  - ID: " << actor.id
-                      << ", Name: " << actor.name
-                      << ", Character: " << actor.character << "\n";
+void parseCSV(const string& filename, vector<Movie>& movies) {
+  try {
+    rapidcsv::Document doc(filename, rapidcsv::LabelParams(-1, -1));
+
+    for (size_t i = 1; i < doc.GetRowCount(); ++i) {
+      try {
+        // Parse Movie
+        Movie movie;
+        movie.movie_id = stoi(doc.GetCell<string>(0, i));
+        movie.title = doc.GetCell<string>(1, i);
+
+        // Parse Cast JSON
+        string castJsonStr = doc.GetCell<string>(2, i);
+        json castJson = json::parse(castJsonStr);
+
+        for (const auto& cast : castJson) {
+          Actor actor;
+          actor.cast_id = cast.at("cast_id").get<int>();
+          actor.character = cast.at("character").get<string>();
+          actor.credit_id = cast.at("credit_id").get<string>();
+          actor.gender = cast.value("gender", -1); // Optional
+          actor.id = cast.at("id").get<int>();
+          actor.name = cast.at("name").get<string>();
+          actor.order = cast.at("order").get<int>();
+          movie.cast.push_back(actor);
         }
-        std::cout << "--------------------------\n";
+        // Parse Crew JSON
+        string crewJsonStr = doc.GetCell<string>(3, i);
+        json  crewJson = json::parse(crewJsonStr);
+
+        for(const auto& crew : crewJson) {
+          Crew crewmember;
+          crewmember.credit_id = crew.at("credit_id").get<string>();
+          crewmember.department = crew.at("department").get<string>();
+          crewmember.job = crew.at("job").get<string>();
+          crewmember.name = crew.at("name").get<string>();
+          movie.crew.push_back(crewmember);
+        }
+
+        movies.push_back(movie);
+
+      } catch (const json::parse_error& e) {
+        cerr << "JSON Parsing Error at row " << i << ": " << e.what() << endl;
+      } catch (const exception& e) {
+        cerr << "Error processing row " << i << ": " << e.what() << endl;
+      }
     }
+
+  } catch (const exception& e) {
+    cerr << "Error reading CSV file: " << e.what() << endl;
+  }
 }
-int main(){
-  std::vector<Movie> movies;
-  const std::string filename = "./public/tmdb_5000_credits.csv";
+
+int main() {
+  vector<Movie> movies;
+  const string filename = "./public/tmdb_5000_credits.csv";
 
   try {
     parseCSV(filename, movies);
+
+    // Map actor names to their IDs
+    std::unordered_map<std::string, int> actorToIndex;
     for (const auto& movie : movies) {
-        std::cout << "Movie ID: " << movie.movie_id << "\n";
-        std::cout << "Title: " << movie.title << "\n";
-        std::cout << "Cast:\n";
-        for (const auto& actor : movie.cast) {
-            std::cout << "  - ID: " << actor.id
-                      << ", Name: " << actor.name
-                      << ", Character: " << actor.character << "\n";
-        }
-        std::cout << "--------------------------\n";
+      for (const auto& actor : movie.cast) {
+        actorToIndex[actor.name] = actor.id;
+      }
     }
+    // Create a graph where vertices are actors and edges are their co-acting relationships
+
+    // Create the graph
+    Graph graph(actorToIndex.size()); // Pass the number of unique actors as the argument
+    for (const auto& movie : movies) {
+      const auto& cast = movie.cast;
+      for (size_t i = 0; i < cast.size(); ++i) {
+        for (size_t j = i + 1; j < cast.size(); ++j) {
+          graph.addEdge(cast[i].id, cast[j].id);
+        }
+      }
+    }
+
+    // Print graph info
+    graph.printGraph();
+
+    // Degree centrality
+    std::vector<int> degreeCentrality = graph.calculateDegreeCentrality();
+    for (size_t i = 0; i < degreeCentrality.size(); ++i) {
+      cout << "Actor " << i << " has degree centrality " << degreeCentrality[i] << endl;
+    }
+
+    // Check connectivity
+    if (graph.isConnected()) {
+      cout << "The graph is connected." << endl;
+    } else {
+      cout << "The graph is not connected." << endl;
+    }
+
+    int numConnectedComponents = graph.countConnectedComponents();
+    cout << "The number of connected components is " << numConnectedComponents << endl;
+
+    // Map actor names to IDs
+    std::unordered_map<int, string> actorMap;
+    for (const auto& movie : movies) {
+      for (const auto& actor : movie.cast) {
+        actorMap[actor.id] = actor.name;
+      }
+    }
+
+    // Actors for shortest path calculation
+    std::string actor1 = "Ving Rhames";
+    std::string actor2 = "Leonardo DiCaprio";
+
+    int start = actorToIndex[actor1];
+    int end = actorToIndex[actor2];
+
+    cout << "The start index is " << start << " and the end index is " << end << endl;
+
+    int degree = graph.shortestDegreeOfSeparation(start, end);
+
+    if (degree != -1) {
+      cout << "The shortest path between " << actor1 << " and " << actor2 << " is " << degree << endl;
+    } else {
+      cout << "There is no path between " << actor1 << " and " << actor2 << endl;
+    }
+
   } catch (const std::exception& ex) {
-      std::cerr << "Error: " << ex.what() << "\n";
+    std::cerr << "Error: " << ex.what() << std::endl;
   }
 
-    // Loop through each row and print
   return 0;
 }
+

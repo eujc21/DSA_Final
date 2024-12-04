@@ -93,12 +93,12 @@ clean: CMakeFiles/parseit.dir/clean
 CMakeFiles/parseit.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles --progress-num=1,2 "Built target parseit"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles --progress-num=1,2,3 "Built target parseit"
 .PHONY : CMakeFiles/parseit.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/parseit.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/parseit.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles 0
 .PHONY : CMakeFiles/parseit.dir/rule

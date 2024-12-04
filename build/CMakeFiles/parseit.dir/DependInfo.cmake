@@ -4,12 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/include/Graph.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/include/Graph.cpp.o"
   "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/src/main.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
   "/home/ejoya/.conan2/p/b/fmt152248c939240/p/include"
   "/home/ejoya/.conan2/p/rapid60423a35d5620/p/include"
   "/home/ejoya/.conan2/p/nlohm0567ffc90cfc1/p/include"

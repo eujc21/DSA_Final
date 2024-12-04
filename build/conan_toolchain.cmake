@@ -171,6 +171,7 @@ set(CMAKE_INSTALL_OLDINCLUDEDIR "include")
 # Definition of CMake variables from CMakeToolchain.variables values
 
 # Variables
+set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "Variable CMAKE_VERBOSE_MAKEFILE conan-toolchain defined")
 # Variables  per configuration
 
 

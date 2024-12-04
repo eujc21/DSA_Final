@@ -142,6 +142,33 @@ parseit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/build
 .PHONY : parseit/fast
 
+include/Graph.o: include/Graph.cpp.o
+
+.PHONY : include/Graph.o
+
+# target to build an object file
+include/Graph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/include/Graph.cpp.o
+.PHONY : include/Graph.cpp.o
+
+include/Graph.i: include/Graph.cpp.i
+
+.PHONY : include/Graph.i
+
+# target to preprocess a source file
+include/Graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/include/Graph.cpp.i
+.PHONY : include/Graph.cpp.i
+
+include/Graph.s: include/Graph.cpp.s
+
+.PHONY : include/Graph.s
+
+# target to generate assembly for a file
+include/Graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/include/Graph.cpp.s
+.PHONY : include/Graph.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -178,6 +205,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... parseit"
+	@echo "... include/Graph.o"
+	@echo "... include/Graph.i"
+	@echo "... include/Graph.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
