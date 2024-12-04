@@ -9,6 +9,9 @@ Graph::Graph(int numVertices) {
 
 // Add edge to the graph
 void Graph::addEdge(int src, int dest) {
+  if(src < 0 || src >= numVertices || dest < 0 || dest >= numVertices) {
+    std::cerr << "Error: Invalid vertices for add Edge.\n";
+  }
   adjList[src].push_back(dest);
   adjList[dest].push_back(src);
 }
@@ -16,20 +19,20 @@ void Graph::addEdge(int src, int dest) {
 // Print the adjacency list representation of the graph
 void Graph::printGraph() {
   for (int i = 0; i < numVertices; ++i) {
-    std::cout << "Vertex " << i << " has the following neighbors: ";
+    std::cout << "Actor " << i << " has connections with: ";
     for (const auto& neighbor : adjList[i]) {
       std::cout << neighbor << " ";
     }
     std::cout << std::endl;
-  }
+  } 
 }
 
-std::vector<int> Graph::calculateDegreeCentrality() const {
-  std::vector<int> degreeCentrality(numVertices, 0);
-  for (int i = 0; i < numVertices; ++i) {
-    degreeCentrality[i] = adjList[i].size();
-  }
-  return degreeCentrality;
+std::vector<std::pair<int, int>> Graph::calculateDegreeCentrality() const {
+    std::vector<std::pair<int, int>> degreeCentrality;
+    for (int i = 0; i < numVertices; ++i) {
+        degreeCentrality.emplace_back(i, adjList[i].size());
+    }
+    return degreeCentrality;
 }
 
 bool Graph::isConnected() const {
@@ -95,14 +98,14 @@ int Graph::shortestDegreeOfSeparation(int startIndex, int endIndex) const {
         int vertex = q.front();
         q.pop();
 
-        std::cout << "Processing vertex: " << vertex << "\n"; // Debugging
+        // std::cout << "Processing vertex: " << vertex << "\n"; // Debugging
 
         for (const auto& neighbor : adjList[vertex]) {
             if (!visited[neighbor]) {
                 visited[neighbor] = true;
                 distance[neighbor] = distance[vertex] + 1;
 
-                std::cout << "  Visiting neighbor: " << neighbor << ", Distance: " << distance[neighbor] << "\n"; // Debugging
+                // std::cout << "  Visiting neighbor: " << neighbor << ", Distance: " << distance[neighbor] << "\n"; // Debugging
 
                 if (neighbor == endIndex) {
                     return distance[neighbor]; // Found the shortest path
@@ -110,7 +113,7 @@ int Graph::shortestDegreeOfSeparation(int startIndex, int endIndex) const {
 
                 q.push(neighbor);
             } else {
-                std::cout << "  Skipping visited neighbor: " << neighbor << "\n"; // Debugging
+                // std::cout << "  Skipping visited neighbor: " << neighbor << "\n"; // Debugging
             }
         }
     }
@@ -118,5 +121,49 @@ int Graph::shortestDegreeOfSeparation(int startIndex, int endIndex) const {
     // If we exit the loop without finding the endIndex
     std::cerr << "No path exists between the specified vertices.\n";
     return -1;
+}
+
+void Graph::mergeSort(std::vector<std::pair<int, int>>& vec, int left, int right) const {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(vec, left, mid);
+        mergeSort(vec, mid + 1, right);
+        merge(vec, left, mid, right);
+    }
+}
+
+void Graph::merge(std::vector<std::pair<int, int>>& vec, int left, int mid, int right) const {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    std::vector<std::pair<int, int>> L(n1), R(n2);
+    for (int i = 0; i < n1; ++i) L[i] = vec[left + i];
+    for (int i = 0; i < n2; ++i) R[i] = vec[mid + 1 + i];
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i].second >= R[j].second) {
+            vec[k++] = L[i++];
+        } else {
+            vec[k++] = R[j++];
+        }
+    }
+    while (i < n1) vec[k++] = L[i++];
+    while (j < n2) vec[k++] = R[j++];
+}
+
+std::vector<std::pair<int, int>> Graph::getTopDegreeCentrality(int topN) const {
+    // Get degree centrality
+    std::vector<std::pair<int, int>> degreeCentrality = calculateDegreeCentrality();
+
+    // Create a local copy of the vector for sorting
+    std::vector<std::pair<int, int>> sortedDegreeCentrality = degreeCentrality;
+
+    // Sort the vector in descending order based on degree
+    mergeSort(sortedDegreeCentrality, 0, sortedDegreeCentrality.size() - 1);
+
+    // Return the top N elements
+    return std::vector<std::pair<int, int>>(sortedDegreeCentrality.begin(),
+                                            sortedDegreeCentrality.begin() + std::min(topN, (int)sortedDegreeCentrality.size()));
 }
 
