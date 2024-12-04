@@ -96,76 +96,75 @@ int main() {
   vector<Movie> movies;
   const string filename = "./public/tmdb_5000_credits.csv";
 
+  // Construct an adjacency list where the vertices are actors and the edges are movies
   try {
     parseCSV(filename, movies);
 
-    // Map actor names to their IDs
-    std::unordered_map<std::string, int> actorToIndex;
-    for (const auto& movie : movies) {
-      for (const auto& actor : movie.cast) {
-        actorToIndex[actor.name] = actor.id;
+    // 1. Create a map of actors to movie indices
+    std::unordered_map<int, std::vector<int>> actorToMovies;
+    for (size_t i = 0; i < movies.size(); ++i) {
+      for (const auto& actor : movies[i].cast) {
+        actorToMovies[actor.id].push_back(i); 
       }
     }
-    // Create a graph where vertices are actors and edges are their co-acting relationships
 
-    // Create the graph
-    Graph graph(actorToIndex.size()); // Pass the number of unique actors as the argument
-    for (const auto& movie : movies) {
-      const auto& cast = movie.cast;
-      for (size_t i = 0; i < cast.size(); ++i) {
-        for (size_t j = i + 1; j < cast.size(); ++j) {
-          graph.addEdge(cast[i].id, cast[j].id);
+    // 2. Create the graph and add edges
+    Graph graph(movies.size());
+    for (const auto& [actorId, movieIndices] : actorToMovies) {
+      for (size_t i = 0; i < movieIndices.size(); ++i) {
+        for (size_t j = i + 1; j < movieIndices.size(); ++j) {
+          graph.addEdge(movieIndices[i], movieIndices[j]);
         }
       }
     }
 
-    // Print graph info
     graph.printGraph();
 
-    // Degree centrality
     std::vector<int> degreeCentrality = graph.calculateDegreeCentrality();
     for (size_t i = 0; i < degreeCentrality.size(); ++i) {
+      // print the name of the actor
       cout << "Actor " << i << " has degree centrality " << degreeCentrality[i] << endl;
     }
-
-    // Check connectivity
+      
+    // Determine if the graph is connected
     if (graph.isConnected()) {
       cout << "The graph is connected." << endl;
     } else {
       cout << "The graph is not connected." << endl;
     }
 
+    // Determine the number of connected components
     int numConnectedComponents = graph.countConnectedComponents();
     cout << "The number of connected components is " << numConnectedComponents << endl;
 
-    // Map actor names to IDs
-    std::unordered_map<int, string> actorMap;
-    for (const auto& movie : movies) {
-      for (const auto& actor : movie.cast) {
-        actorMap[actor.id] = actor.name;
+
+    // Create an actorToIndex map
+    std::unordered_map<std::string, int> actorToIndex;
+    for (size_t i = 0; i < movies.size(); ++i) {
+      for (const auto& actor : movies[i].cast) {
+      actorToIndex[actor.name] = actor.id;
       }
     }
 
-    // Actors for shortest path calculation
-    std::string actor1 = "Ving Rhames";
-    std::string actor2 = "Leonardo DiCaprio";
-
+    std::string actor1 = "Leonardo DiCaprio";
+    std::string actor2 = "Jack Nicholson";
+  
     int start = actorToIndex[actor1];
     int end = actorToIndex[actor2];
 
-    cout << "The start index is " << start << " and the end index is " << end << endl;
-
     int degree = graph.shortestDegreeOfSeparation(start, end);
 
-    if (degree != -1) {
+    if(degree != -1) {
       cout << "The shortest path between " << actor1 << " and " << actor2 << " is " << degree << endl;
     } else {
       cout << "There is no path between " << actor1 << " and " << actor2 << endl;
     }
+      
 
   } catch (const std::exception& ex) {
     std::cerr << "Error: " << ex.what() << std::endl;
-  }
+  } 
+
 
   return 0;
 }

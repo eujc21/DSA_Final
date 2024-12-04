@@ -1,0 +1,10 @@
+[requires]
+fmt/11.0.2
+rapidcsv/8.84
+nlohmann_json/3.11.3
+ds_3180/1.0
+
+[generators]
+CMakeToolchain
+CMakeDeps
+cmake_find_package

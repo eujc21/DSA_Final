@@ -35,6 +35,9 @@
 .SUFFIXES: .hpux_make_needs_suffix_list
 
 
+# Produce verbose output by default.
+VERBOSE = 1
+
 # Command-line flag to silence nested $(MAKE).
 $(VERBOSE)MAKESILENT = -s
 
@@ -113,7 +116,7 @@ parseit_EXTERNAL_OBJECTS =
 parseit: CMakeFiles/parseit.dir/src/main.cpp.o
 parseit: CMakeFiles/parseit.dir/include/Graph.cpp.o
 parseit: CMakeFiles/parseit.dir/build.make
-parseit: /home/ejoya/.conan2/p/b/fmt152248c939240/p/lib/libfmt.a
+parseit: /home/ejoya/.conan2/p/b/fmtaa838bea70861/p/lib/libfmt.a
 parseit: CMakeFiles/parseit.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable parseit"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/parseit.dir/link.txt --verbose=$(VERBOSE)
