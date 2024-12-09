@@ -209,6 +209,33 @@ include/Graph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/include/Graph.cpp.s
 .PHONY : include/Graph.cpp.s
 
+include/MovieParser.o: include/MovieParser.cpp.o
+
+.PHONY : include/MovieParser.o
+
+# target to build an object file
+include/MovieParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/include/MovieParser.cpp.o
+.PHONY : include/MovieParser.cpp.o
+
+include/MovieParser.i: include/MovieParser.cpp.i
+
+.PHONY : include/MovieParser.i
+
+# target to preprocess a source file
+include/MovieParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/include/MovieParser.cpp.i
+.PHONY : include/MovieParser.cpp.i
+
+include/MovieParser.s: include/MovieParser.cpp.s
+
+.PHONY : include/MovieParser.s
+
+# target to generate assembly for a file
+include/MovieParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/include/MovieParser.cpp.s
+.PHONY : include/MovieParser.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -236,60 +263,6 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-tests/test_graph.o: tests/test_graph.cpp.o
-
-.PHONY : tests/test_graph.o
-
-# target to build an object file
-tests/test_graph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_graph.cpp.o
-.PHONY : tests/test_graph.cpp.o
-
-tests/test_graph.i: tests/test_graph.cpp.i
-
-.PHONY : tests/test_graph.i
-
-# target to preprocess a source file
-tests/test_graph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_graph.cpp.i
-.PHONY : tests/test_graph.cpp.i
-
-tests/test_graph.s: tests/test_graph.cpp.s
-
-.PHONY : tests/test_graph.s
-
-# target to generate assembly for a file
-tests/test_graph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_graph.cpp.s
-.PHONY : tests/test_graph.cpp.s
-
-tests/test_main.o: tests/test_main.cpp.o
-
-.PHONY : tests/test_main.o
-
-# target to build an object file
-tests/test_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_main.cpp.o
-.PHONY : tests/test_main.cpp.o
-
-tests/test_main.i: tests/test_main.cpp.i
-
-.PHONY : tests/test_main.i
-
-# target to preprocess a source file
-tests/test_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_main.cpp.i
-.PHONY : tests/test_main.cpp.i
-
-tests/test_main.s: tests/test_main.cpp.s
-
-.PHONY : tests/test_main.s
-
-# target to generate assembly for a file
-tests/test_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_main.cpp.s
-.PHONY : tests/test_main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -305,15 +278,12 @@ help:
 	@echo "... include/Graph.o"
 	@echo "... include/Graph.i"
 	@echo "... include/Graph.s"
+	@echo "... include/MovieParser.o"
+	@echo "... include/MovieParser.i"
+	@echo "... include/MovieParser.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... tests/test_graph.o"
-	@echo "... tests/test_graph.i"
-	@echo "... tests/test_graph.s"
-	@echo "... tests/test_main.o"
-	@echo "... tests/test_main.i"
-	@echo "... tests/test_main.s"
 .PHONY : help
 
 

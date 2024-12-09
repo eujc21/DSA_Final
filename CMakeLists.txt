@@ -18,8 +18,9 @@ add_subdirectory(external/Catch2)
 add_executable(parseit
   src/main.cpp
   include/Graph.cpp
-  tests/test_main.cpp
-  tests/test_graph.cpp
+  include/MovieParser.cpp
+  # tests/test_main.cpp
+  # tests/test_graph.cpp
 )
 
 # Find required packages (Conan should handle this)

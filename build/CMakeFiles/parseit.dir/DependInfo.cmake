@@ -5,9 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/include/Graph.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/include/Graph.cpp.o"
+  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/include/MovieParser.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/include/MovieParser.cpp.o"
   "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/src/main.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/src/main.cpp.o"
-  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/tests/test_graph.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/tests/test_graph.cpp.o"
-  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/tests/test_main.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/tests/test_main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
