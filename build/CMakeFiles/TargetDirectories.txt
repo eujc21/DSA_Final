@@ -1,3 +1,12 @@
 /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/rebuild_cache.dir
 /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/edit_cache.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/test.dir
 /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/CMakeFiles/rebuild_cache.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/CMakeFiles/edit_cache.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/CMakeFiles/test.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/src/CMakeFiles/edit_cache.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/src/CMakeFiles/test.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/src/CMakeFiles/Catch2WithMain.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/src/CMakeFiles/rebuild_cache.dir
+/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/src/CMakeFiles/Catch2.dir

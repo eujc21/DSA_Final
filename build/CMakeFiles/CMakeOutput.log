@@ -435,3 +435,18 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Performing C++ SOURCE FILE Test HAVE_FLAG__ffile_prefix_map__home_ejoya_LocalDev_UNCC_2024_Fall_ECGR_3180_final_project_external_Catch2__ succeeded with the following output:
+Change Dir: /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_af733/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_af733.dir/build.make CMakeFiles/cmTC_af733.dir/build
+gmake[1]: Entering directory '/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_af733.dir/src.cxx.o
+/usr/bin/c++   -m64 -DHAVE_FLAG__ffile_prefix_map__home_ejoya_LocalDev_UNCC_2024_Fall_ECGR_3180_final_project_external_Catch2__   -ffile-prefix-map=/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/external/Catch2/= -std=gnu++17 -o CMakeFiles/cmTC_af733.dir/src.cxx.o -c /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_af733
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_af733.dir/link.txt --verbose=1
+/usr/bin/c++ -m64 -DHAVE_FLAG__ffile_prefix_map__home_ejoya_LocalDev_UNCC_2024_Fall_ECGR_3180_final_project_external_Catch2__ -m64  CMakeFiles/cmTC_af733.dir/src.cxx.o -o cmTC_af733 
+gmake[1]: Leaving directory '/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }

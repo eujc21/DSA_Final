@@ -6,12 +6,16 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/include/Graph.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/include/Graph.cpp.o"
   "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/src/main.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/src/main.cpp.o"
+  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/tests/test_graph.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/tests/test_graph.cpp.o"
+  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/tests/test_main.cpp" "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles/parseit.dir/tests/test_main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
+  "../external/Catch2/src/catch2/.."
+  "external/Catch2/generated-includes"
   "/home/ejoya/.conan2/p/b/fmtaa838bea70861/p/include"
   "/home/ejoya/.conan2/p/rapid60423a35d5620/p/include"
   "/home/ejoya/.conan2/p/nlohm0567ffc90cfc1/p/include"
@@ -19,6 +23,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/src/CMakeFiles/Catch2WithMain.dir/DependInfo.cmake"
+  "/home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/external/Catch2/src/CMakeFiles/Catch2.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

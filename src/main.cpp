@@ -112,15 +112,16 @@ int main() {
     }
 
     // 2. Create the graph and add edges
+    // This graph is for the actors
     Graph graph(currentIndex);
-      for (const auto& movie : movies) {
-        for (size_t i = 0; i < movie.cast.size(); ++i) {
-            for (size_t j = i + 1; j < movie.cast.size(); ++j) {
-                int actor1 = actorToVertex[movie.cast[i].id];
-                int actor2 = actorToVertex[movie.cast[j].id];
-                graph.addEdge(actor1, actor2);
-            }
-        }
+    for (const auto& movie : movies) {
+      for (size_t i = 0; i < movie.cast.size(); ++i) {
+          for (size_t j = i + 1; j < movie.cast.size(); ++j) {
+              int actor1 = actorToVertex[movie.cast[i].id];
+              int actor2 = actorToVertex[movie.cast[j].id];
+              graph.addEdge(actor1, actor2);
+          }
+      }
     }
 
     graph.printGraph();
@@ -148,7 +149,7 @@ int main() {
     }
 
     std::string actor1 = "Leonardo DiCaprio";
-    std::string actor2 = "Jack Nicholson";
+    std::string actor2 = "Tom Hanks";
   
     int start = actorToIndex[actor1];
     int end = actorToIndex[actor2];

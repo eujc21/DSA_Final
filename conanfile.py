@@ -12,6 +12,7 @@ class MyProjectConan(ConanFile):
         self.requires("rapidcsv/8.84")
         self.requires("nlohmann_json/3.11.3")
 
+
     def generate(self):
         tc = CMakeToolchain(self)
         tc.variables["CMAKE_VERBOSE_MAKEFILE"] = True # Example: Add a CMake variable
@@ -22,3 +23,13 @@ class MyProjectConan(ConanFile):
 
     def package(self):
         self.copy("*.h", dst="include", src="include")
+
+    def build(slef):
+        cmake == CMake(self)
+        cmake.configure()
+        cmake.build()
+        # This will run the tests if test package is found
+        if not self.conf.get("tools.build:skip_test", default=False):
+            camke.test()
+
+

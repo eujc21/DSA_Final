@@ -15,6 +15,7 @@ cd build
 # Configure the project using CMake
 cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 
+
 # Build the project
 cmake --build .
 
@@ -23,4 +24,5 @@ cd ..
 
 # Run the executable
 ./build/parseit
+
 

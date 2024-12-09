@@ -100,6 +100,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build/CMakeFiles /home/ejoya/LocalDev/UNCC/2024/Fall/ECGR-3180/final-project/build//CMakeFiles/progress.marks
@@ -144,6 +155,32 @@ parseit: cmake_check_build_system
 parseit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/build
 .PHONY : parseit/fast
+
+#=============================================================================
+# Target rules for targets named Catch2WithMain
+
+# Build rule for target.
+Catch2WithMain: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Catch2WithMain
+.PHONY : Catch2WithMain
+
+# fast build rule for target.
+Catch2WithMain/fast:
+	$(MAKE) $(MAKESILENT) -f external/Catch2/src/CMakeFiles/Catch2WithMain.dir/build.make external/Catch2/src/CMakeFiles/Catch2WithMain.dir/build
+.PHONY : Catch2WithMain/fast
+
+#=============================================================================
+# Target rules for targets named Catch2
+
+# Build rule for target.
+Catch2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Catch2
+.PHONY : Catch2
+
+# fast build rule for target.
+Catch2/fast:
+	$(MAKE) $(MAKESILENT) -f external/Catch2/src/CMakeFiles/Catch2.dir/build.make external/Catch2/src/CMakeFiles/Catch2.dir/build
+.PHONY : Catch2/fast
 
 include/Graph.o: include/Graph.cpp.o
 
@@ -199,6 +236,60 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+tests/test_graph.o: tests/test_graph.cpp.o
+
+.PHONY : tests/test_graph.o
+
+# target to build an object file
+tests/test_graph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_graph.cpp.o
+.PHONY : tests/test_graph.cpp.o
+
+tests/test_graph.i: tests/test_graph.cpp.i
+
+.PHONY : tests/test_graph.i
+
+# target to preprocess a source file
+tests/test_graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_graph.cpp.i
+.PHONY : tests/test_graph.cpp.i
+
+tests/test_graph.s: tests/test_graph.cpp.s
+
+.PHONY : tests/test_graph.s
+
+# target to generate assembly for a file
+tests/test_graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_graph.cpp.s
+.PHONY : tests/test_graph.cpp.s
+
+tests/test_main.o: tests/test_main.cpp.o
+
+.PHONY : tests/test_main.o
+
+# target to build an object file
+tests/test_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_main.cpp.o
+.PHONY : tests/test_main.cpp.o
+
+tests/test_main.i: tests/test_main.cpp.i
+
+.PHONY : tests/test_main.i
+
+# target to preprocess a source file
+tests/test_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_main.cpp.i
+.PHONY : tests/test_main.cpp.i
+
+tests/test_main.s: tests/test_main.cpp.s
+
+.PHONY : tests/test_main.s
+
+# target to generate assembly for a file
+tests/test_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parseit.dir/build.make CMakeFiles/parseit.dir/tests/test_main.cpp.s
+.PHONY : tests/test_main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -207,6 +298,9 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
+	@echo "... Catch2"
+	@echo "... Catch2WithMain"
 	@echo "... parseit"
 	@echo "... include/Graph.o"
 	@echo "... include/Graph.i"
@@ -214,6 +308,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... tests/test_graph.o"
+	@echo "... tests/test_graph.i"
+	@echo "... tests/test_graph.s"
+	@echo "... tests/test_main.o"
+	@echo "... tests/test_main.i"
+	@echo "... tests/test_main.s"
 .PHONY : help
 
 
